@@ -2,17 +2,22 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 )
 
 func Execute() {
-	files, err := os.ReadDir(".")
-	if err != nil {
-		log.Fatal(err)
-	}
+	printFiles(".")
+}
 
-	for _, file := range files {
-		fmt.Println(file.Name())
+func printFiles(dir string) {
+	// check if it's a file or directory
+	info, err := os.Stat(dir)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	if !info.IsDir() {
+		fmt.Println(dir) // just print file name
+		return
 	}
 }
