@@ -20,4 +20,13 @@ func printFiles(dir string) {
 		fmt.Println(dir) // just print file name
 		return
 	}
+	// it's a directory, so list content
+	files, err := os.ReadDir(dir)
+	if err != nil {
+		fmt.Println("Error in accessing directory:", err)
+		return
+	}
+	for _, file := range files {
+		fmt.Println(file.Name()) // print each file name.
+	}
 }
