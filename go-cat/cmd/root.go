@@ -16,13 +16,13 @@ func ReadFiles() {
 	}
 	// loop over arguments
 	for _, file := range os.Args[1:] {
-		info, err := os.Args(file)
+		info, err := os.Stat(file)
 		if err != nil {
-			fmt.Println(file.Name())
+			fmt.Println("go-cat: ", file, ": ", err)
 			return
 		}
 		if !info.IsDir() {
-			fmt.Println("go-cat: <filePath>: is a directory", os.Args[1])
+			fmt.Println("go-cat: ", file, ": is a directory")
 			return
 		}
 	}
